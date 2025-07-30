@@ -14,7 +14,8 @@ A Firefox extension that allows users to copy tab links and information in multi
 
 - **Markdown**: `[Tab Title](URL)` - Perfect for documentation and README files
 - **Rich Text**: Formatted clickable links for word processors
-- **Plain Text**: Simple "Tab Title - URL" format
+- **Title First**: Simple '"Tab Title" - URL' format
+- **Link First**: Simple 'URL - "Tab Title"' format
 
 ## Installation
 

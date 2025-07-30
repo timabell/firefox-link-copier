@@ -11,8 +11,13 @@ const DEFAULT_FORMATS = [
 		type: 'rich'
 	},
 	{
-		name: 'Plain Text',
-		template: '{{title}} - {{url}}',
+		name: 'Title First',
+		template: '"{{title}}" - {{url}}',
+		type: 'plain'
+	},
+	{
+		name: 'Link First',
+		template: '{{url}} - "{{title}}"',
 		type: 'plain'
 	}
 ];
