@@ -38,17 +38,24 @@ A Firefox extension that allows users to copy tab links and information in multi
 3. Choose your desired format
 4. Paste anywhere you need the formatted link
 
+![Context Menu Screenshot](doc/popup-screenshot.png)
+
+*Right-click context menu showing available copy formats*
+
 ## Configuration
 
 Access the extension options through:
-- Firefox Add-ons Manager → Firefox Link Copier → Options
+- Firefox Add-ons Manager → Tim's Link Copier → Options
 - Or right-click the extension icon and select "Options"
+
+![Settings Screenshot](doc/settings-screenshot.png)
+
+*Settings page showing customizable copy formats*
 
 Create custom formats using template variables:
 - `{{title}}` - Tab title
 - `{{url}}` - Tab URL
 - `{{domain}}` - Domain name only
-- `{{timestamp}}` - Current timestamp
 
 ## Development
 
