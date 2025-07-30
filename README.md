@@ -58,7 +58,7 @@ Create custom formats using template variables:
 
 ### Setup
 ```bash
-git clone https://github.com/yourusername/firefox-link-copier.git
+git clone https://github.com/timabell/firefox-link-copier.git
 cd firefox-link-copier
 npm install
 ```
