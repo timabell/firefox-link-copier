@@ -101,5 +101,4 @@ This project is licensed under the A-GPL v3 License - see the [LICENSE](LICENSE)
 
 ## Acknowledgments
 
-- Inspired by [Copy LinKTab name and URL](https://addons.mozilla.org/en-GB/firefox/addon/copy-linktab-name-and-url/)
-- Built following Firefox WebExtension standards
+- Inspired by add-on [Copy LinkTab name and URL](https://addons.mozilla.org/en-GB/firefox/addon/copy-linktab-name-and-url/) which is very good but doesn't do rich-text copy-paste.
