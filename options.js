@@ -47,30 +47,72 @@ function renderFormats() {
 function createFormatElement(format, index) {
 	const div = document.createElement('div');
 	div.className = 'format-item';
-	div.innerHTML = `
-		<label>Name:</label>
-		<input type="text" class="name-input" value="${escapeAttr(format.name)}" data-index="${index}">
-		
-		<label>Template:</label>
-		<input type="text" class="template-input" value="${escapeAttr(format.template)}" data-index="${index}">
-		
-		<label>Type:</label>
-		<select class="type-select" data-index="${index}">
-			<option value="plain" ${format.type === 'plain' ? 'selected' : ''}>Plain Text</option>
-			<option value="markdown" ${format.type === 'markdown' ? 'selected' : ''}>Markdown</option>
-			<option value="rich" ${format.type === 'rich' ? 'selected' : ''}>Rich Text</option>
-		</select>
-		
-		<div class="preview" id="preview-${index}"></div>
-		
-		<button class="delete" data-index="${index}">Delete</button>
-	`;
 	
-	// Add event listeners for live preview and auto-save
-	const nameInput = div.querySelector('.name-input');
-	const templateInput = div.querySelector('.template-input');
-	const typeSelect = div.querySelector('.type-select');
-	const deleteButton = div.querySelector('.delete');
+	// Name label and input
+	const nameLabel = document.createElement('label');
+	nameLabel.textContent = 'Name:';
+	div.appendChild(nameLabel);
+	
+	const nameInput = document.createElement('input');
+	nameInput.type = 'text';
+	nameInput.className = 'name-input';
+	nameInput.value = format.name;
+	nameInput.setAttribute('data-index', index);
+	div.appendChild(nameInput);
+	
+	// Template label and input
+	const templateLabel = document.createElement('label');
+	templateLabel.textContent = 'Template:';
+	div.appendChild(templateLabel);
+	
+	const templateInput = document.createElement('input');
+	templateInput.type = 'text';
+	templateInput.className = 'template-input';
+	templateInput.value = format.template;
+	templateInput.setAttribute('data-index', index);
+	div.appendChild(templateInput);
+	
+	// Type label and select
+	const typeLabel = document.createElement('label');
+	typeLabel.textContent = 'Type:';
+	div.appendChild(typeLabel);
+	
+	const typeSelect = document.createElement('select');
+	typeSelect.className = 'type-select';
+	typeSelect.setAttribute('data-index', index);
+	
+	const plainOption = document.createElement('option');
+	plainOption.value = 'plain';
+	plainOption.textContent = 'Plain Text';
+	plainOption.selected = format.type === 'plain';
+	typeSelect.appendChild(plainOption);
+	
+	const markdownOption = document.createElement('option');
+	markdownOption.value = 'markdown';
+	markdownOption.textContent = 'Markdown';
+	markdownOption.selected = format.type === 'markdown';
+	typeSelect.appendChild(markdownOption);
+	
+	const richOption = document.createElement('option');
+	richOption.value = 'rich';
+	richOption.textContent = 'Rich Text';
+	richOption.selected = format.type === 'rich';
+	typeSelect.appendChild(richOption);
+	
+	div.appendChild(typeSelect);
+	
+	// Preview div
+	const previewDiv = document.createElement('div');
+	previewDiv.className = 'preview';
+	previewDiv.id = `preview-${index}`;
+	div.appendChild(previewDiv);
+	
+	// Delete button
+	const deleteButton = document.createElement('button');
+	deleteButton.className = 'delete';
+	deleteButton.textContent = 'Delete';
+	deleteButton.setAttribute('data-index', index);
+	div.appendChild(deleteButton);
 	
 	nameInput.addEventListener('input', () => {
 		updatePreview(index);
@@ -169,15 +211,6 @@ async function resetToDefaults() {
 		renderFormats();
 		autoSave();
 	}
-}
-
-function escapeAttr(text) {
-	return text
-		.replace(/&/g, '&amp;')
-		.replace(/</g, '&lt;')
-		.replace(/>/g, '&gt;')
-		.replace(/"/g, '&quot;')
-		.replace(/'/g, '&#39;');
 }
 
 function escapeHtml(text) {
