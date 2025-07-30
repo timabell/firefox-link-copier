@@ -29,7 +29,7 @@
 	"author": "Tim Abell <t@0x5.uk>",
 	"homepage_url": "https://github.com/timabell/firefox-link-copier",
 	
-	"applications": {
+	"browser_specific_settings": {
 		"gecko": {
 			"id": "firefox-link-copier@0x5.uk",
 			"strict_min_version": "88.0"
