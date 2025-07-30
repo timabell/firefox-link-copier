@@ -95,7 +95,7 @@ function extractDomain(url) {
 	try {
 		const urlObj = new URL(url);
 		return urlObj.hostname;
-	} catch (e) {
+	} catch {
 		return '';
 	}
 }
@@ -109,7 +109,7 @@ async function copyPlainText(text) {
 	try {
 		await navigator.clipboard.writeText(text);
 	} catch (err) {
-		console.error('Failed to copy text:', err);
+		console.error('Failed to copy text:', err); // eslint-disable-line no-console
 	}
 }
 
@@ -121,7 +121,7 @@ async function copyRichText(html, title, url) {
 		});
 		await navigator.clipboard.write([clipboardItem]);
 	} catch (err) {
-		console.error('Failed to copy rich text:', err);
+		console.error('Failed to copy rich text:', err); // eslint-disable-line no-console
 		// Fallback to plain text
 		await copyPlainText(`${title} - ${url}`);
 	}

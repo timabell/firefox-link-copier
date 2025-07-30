@@ -1,6 +1,7 @@
 {
 	"name": "firefox-link-copier",
 	"version": "1.0.0",
+	"type": "module",
 	"description": "Firefox extension to copy tab links in multiple formats",
 	"author": "Tim Abell <t@0x5.uk>",
 	"homepage": "https://github.com/timabell/firefox-link-copier",
