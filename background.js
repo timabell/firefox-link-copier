@@ -100,6 +100,11 @@ function extractDomain(url) {
 	}
 }
 
+// Export functions for testing
+if (typeof module !== 'undefined' && module.exports) {
+	module.exports = { formatTemplate, extractDomain };
+}
+
 async function copyPlainText(text) {
 	try {
 		await navigator.clipboard.writeText(text);

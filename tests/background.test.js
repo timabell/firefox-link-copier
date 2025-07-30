@@ -6,6 +6,9 @@ const mockBrowser = {
 		sync: {
 			get: jest.fn(),
 			set: jest.fn()
+		},
+		onChanged: {
+			addListener: jest.fn()
 		}
 	},
 	contextMenus: {
@@ -26,6 +29,9 @@ const mockBrowser = {
 };
 
 global.browser = mockBrowser;
+
+// Import functions from background.js for testing
+const { formatTemplate, extractDomain } = require('../background.js');
 
 // Test formatTemplate function
 describe('formatTemplate', () => {
