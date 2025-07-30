@@ -28,7 +28,7 @@ A Firefox extension that allows users to copy tab links and information in multi
 2. Open Firefox and navigate to `about:debugging`
 3. Click "This Firefox"
 4. Click "Load Temporary Add-on"
-5. Select the `manifest.json` file from this project
+5. Select the `manifest.json` file from the `src/` folder
 
 ## Usage
 
@@ -77,13 +77,14 @@ npm run build
 ### Project Structure
 ```
 firefox-link-copier/
-├── manifest.json          # Extension manifest
-├── background/            # Background scripts
-├── content/              # Content scripts
-├── popup/                # Extension popup UI
-├── options/              # Options page
-├── icons/                # Extension icons
+├── src/                  # Extension source files
+│   ├── manifest.json     # Extension manifest
+│   ├── background.js     # Background script
+│   ├── options.html      # Options page
+│   ├── options.js        # Options page logic
+│   └── icon.svg          # Extension icon
 ├── tests/                # Test files
+├── dist/                 # Built extension packages
 └── docs/                 # Documentation
 ```
 

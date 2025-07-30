@@ -31,7 +31,7 @@ const mockBrowser = {
 global.browser = mockBrowser;
 
 // Import functions from background.js for testing
-const { formatTemplate, extractDomain } = require('../background.js');
+const { formatTemplate, extractDomain } = require('../src/background.js');
 
 // Test formatTemplate function
 describe('formatTemplate', () => {

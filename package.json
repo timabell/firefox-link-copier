@@ -14,9 +14,9 @@
 	"scripts": {
 		"test": "jest",
 		"test:watch": "jest --watch",
-		"lint": "eslint *.js tests/*.js",
-		"build": "web-ext build",
-		"start": "web-ext run"
+		"lint": "eslint src/*.js tests/*.js",
+		"build": "web-ext build --source-dir=src --artifacts-dir=dist",
+		"start": "web-ext run --source-dir=src"
 	},
 	"devDependencies": {
 		"jest": "^30.0.5",
