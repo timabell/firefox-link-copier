@@ -2,6 +2,9 @@
 
 A Firefox extension that allows users to copy tab links and information in multiple customizable formats through the tab context menu.
 
+- https://addons.mozilla.org/en-US/firefox/addon/tim-s-link-copier/
+- https://github.com/timabell/firefox-link-copier
+
 ## Features
 
 - **Multiple Copy Formats**: Copy links in various formats including Markdown, Rich Text, and Plain Text
