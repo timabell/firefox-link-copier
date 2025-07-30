@@ -63,13 +63,14 @@ function createFormatElement(format, index) {
 		
 		<div class="preview" id="preview-${index}"></div>
 		
-		<button class="delete" onclick="deleteFormat(${index})">Delete</button>
+		<button class="delete" data-index="${index}">Delete</button>
 	`;
 	
 	// Add event listeners for live preview and auto-save
 	const nameInput = div.querySelector('.name-input');
 	const templateInput = div.querySelector('.template-input');
 	const typeSelect = div.querySelector('.type-select');
+	const deleteButton = div.querySelector('.delete');
 	
 	nameInput.addEventListener('input', () => {
 		updatePreview(index);
@@ -81,6 +82,9 @@ function createFormatElement(format, index) {
 	});
 	typeSelect.addEventListener('change', () => {
 		autoSave();
+	});
+	deleteButton.addEventListener('click', () => {
+		deleteFormat(index);
 	});
 	
 	// Initial preview
