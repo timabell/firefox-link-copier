@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 	
 	// Event listeners
 	document.getElementById('add-format').addEventListener('click', addNewFormat);
-	document.getElementById('save-formats').addEventListener('click', saveFormats);
 	document.getElementById('reset-defaults').addEventListener('click', resetToDefaults);
 });
 
@@ -67,12 +66,22 @@ function createFormatElement(format, index) {
 		<button class="delete" onclick="deleteFormat(${index})">Delete</button>
 	`;
 	
-	// Add event listeners for live preview
+	// Add event listeners for live preview and auto-save
 	const nameInput = div.querySelector('.name-input');
 	const templateInput = div.querySelector('.template-input');
+	const typeSelect = div.querySelector('.type-select');
 	
-	nameInput.addEventListener('input', () => updatePreview(index));
-	templateInput.addEventListener('input', () => updatePreview(index));
+	nameInput.addEventListener('input', () => {
+		updatePreview(index);
+		autoSave();
+	});
+	templateInput.addEventListener('input', () => {
+		updatePreview(index);
+		autoSave();
+	});
+	typeSelect.addEventListener('change', () => {
+		autoSave();
+	});
 	
 	// Initial preview
 	setTimeout(() => updatePreview(index), 0);
@@ -110,18 +119,20 @@ function addNewFormat() {
 	
 	formats.push(newFormat);
 	renderFormats();
+	autoSave();
 }
 
 function deleteFormat(index) {
 	if (formats.length > 1) {
 		formats.splice(index, 1);
 		renderFormats();
+		autoSave();
 	} else {
 		alert('You must have at least one format.');
 	}
 }
 
-async function saveFormats() {
+async function autoSave() {
 	// Collect data from form
 	const nameInputs = document.querySelectorAll('.name-input');
 	const templateInputs = document.querySelectorAll('.template-input');
@@ -140,31 +151,19 @@ async function saveFormats() {
 	}
 	
 	if (updatedFormats.length === 0) {
-		alert('Please add at least one valid format.');
-		return;
+		return; // Don't save empty formats
 	}
 	
 	// Save to storage
 	await browser.storage.sync.set({ formats: updatedFormats });
 	formats = updatedFormats;
-	
-	// Show success message
-	const saveButton = document.getElementById('save-formats');
-	const originalText = saveButton.textContent;
-	saveButton.textContent = 'Saved!';
-	saveButton.style.background = '#28a745';
-	
-	setTimeout(() => {
-		saveButton.textContent = originalText;
-		saveButton.style.background = '#007bff';
-	}, 2000);
 }
 
 async function resetToDefaults() {
 	if (confirm('Reset to default formats? This will remove all custom formats.')) {
 		formats = [...DEFAULT_FORMATS];
-		await browser.storage.sync.set({ formats: formats });
 		renderFormats();
+		autoSave();
 	}
 }
 
