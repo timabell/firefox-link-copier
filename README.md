@@ -1,4 +1,4 @@
-# Firefox Link Copier
+# Tim's Link Copier
 
 A Firefox extension that allows users to copy tab links and information in multiple customizable formats through the tab context menu.
 
