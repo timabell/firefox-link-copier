@@ -50,10 +50,10 @@ function createFormatElement(format, index) {
 	div.className = 'format-item';
 	div.innerHTML = `
 		<label>Name:</label>
-		<input type="text" class="name-input" value="${escapeHtml(format.name)}" data-index="${index}">
+		<input type="text" class="name-input" value="${escapeAttr(format.name)}" data-index="${index}">
 		
 		<label>Template:</label>
-		<input type="text" class="template-input" value="${escapeHtml(format.template)}" data-index="${index}">
+		<input type="text" class="template-input" value="${escapeAttr(format.template)}" data-index="${index}">
 		
 		<label>Type:</label>
 		<select class="type-select" data-index="${index}">
@@ -166,6 +166,15 @@ async function resetToDefaults() {
 		await browser.storage.sync.set({ formats: formats });
 		renderFormats();
 	}
+}
+
+function escapeAttr(text) {
+	return text
+		.replace(/&/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;')
+		.replace(/'/g, '&#39;');
 }
 
 function escapeHtml(text) {
