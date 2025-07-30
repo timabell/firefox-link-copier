@@ -16,7 +16,7 @@
 		"test": "jest",
 		"test:watch": "jest --watch",
 		"lint": "eslint src/*.js tests/*.js",
-		"build": "web-ext build --source-dir=src --artifacts-dir=dist",
+		"build": "web-ext build --source-dir=src --artifacts-dir=dist --overwrite-dest",
 		"start": "web-ext run --source-dir=src"
 	},
 	"devDependencies": {
