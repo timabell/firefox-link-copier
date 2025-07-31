@@ -19,6 +19,26 @@ const DEFAULT_FORMATS = [
 		name: 'Link First',
 		template: '{{url}} - "{{title}}"',
 		type: 'plain'
+	},
+	{
+		name: 'Rich: domain',
+		template: '<a href="{{url}}">{{domain}}</a>',
+		type: 'rich'
+	},
+	{
+		name: 'Rich: domain+path',
+		template: '<a href="{{url}}">{{domain_path}}</a>',
+		type: 'rich'
+	},
+	{
+		name: 'Markdown: domain',
+		template: '[{{domain}}]({{url}})',
+		type: 'plain'
+	},
+	{
+		name: 'Markdown: domain+path',
+		template: '[{{domain_path}}]({{url}})',
+		type: 'plain'
 	}
 ];
 
@@ -77,9 +97,10 @@ async function copyTabLink(tab, format) {
 	const title = tab.title || 'Untitled';
 	const url = tab.url || '';
 	const domain = extractDomain(url);
+	const domainPath = extractDomainPath(url);
 	
 	// Replace template variables
-	const text = formatTemplate(format.template, title, url, domain);
+	const text = formatTemplate(format.template, title, url, domain, domainPath);
 	
 	// Copy to clipboard
 	if (format.type === 'rich') {
@@ -89,11 +110,12 @@ async function copyTabLink(tab, format) {
 	}
 }
 
-function formatTemplate(template, title, url, domain) {
+function formatTemplate(template, title, url, domain, domainPath) {
 	return template
 		.replace(/\{\{title\}\}/g, title)
 		.replace(/\{\{url\}\}/g, url)
-		.replace(/\{\{domain\}\}/g, domain);
+		.replace(/\{\{domain\}\}/g, domain)
+		.replace(/\{\{domain_path\}\}/g, domainPath);
 }
 
 function extractDomain(url) {
@@ -105,9 +127,19 @@ function extractDomain(url) {
 	}
 }
 
+function extractDomainPath(url) {
+	try {
+		const urlObj = new URL(url);
+		const path = urlObj.pathname === '/' ? '' : urlObj.pathname;
+		return urlObj.hostname + path;
+	} catch {
+		return '';
+	}
+}
+
 // Export functions for testing
 if (typeof module !== 'undefined' && module.exports) {
-	module.exports = { formatTemplate, extractDomain };
+	module.exports = { formatTemplate, extractDomain, extractDomainPath };
 }
 
 async function copyPlainText(text) {

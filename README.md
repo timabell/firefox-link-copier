@@ -19,6 +19,10 @@ A Firefox extension that allows users to copy tab links and information in multi
 - **Rich Text**: Formatted clickable links for word processors
 - **Title First**: Simple '"Tab Title" - URL' format
 - **Link First**: Simple 'URL - "Tab Title"' format
+- **Rich: domain**: Rich text links showing just domain name
+- **Rich: domain+path**: Rich text links showing domain and path
+- **Markdown: domain**: Markdown links showing just domain name  
+- **Markdown: domain+path**: Markdown links showing domain and path
 
 ## Installation
 
@@ -59,6 +63,7 @@ Create custom formats using template variables:
 - `{{title}}` - Tab title
 - `{{url}}` - Tab URL
 - `{{domain}}` - Domain name only
+- `{{domain_path}}` - Domain and path (no protocol/query)
 
 ## Development
 

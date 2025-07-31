@@ -19,6 +19,26 @@ const DEFAULT_FORMATS = [
 		name: 'Link First',
 		template: '{{url}} - "{{title}}"',
 		type: 'plain'
+	},
+	{
+		name: 'Rich: domain',
+		template: '<a href="{{url}}">{{domain}}</a>',
+		type: 'rich'
+	},
+	{
+		name: 'Rich: domain+path',
+		template: '<a href="{{url}}">{{domain_path}}</a>',
+		type: 'rich'
+	},
+	{
+		name: 'Markdown: domain',
+		template: '[{{domain}}]({{url}})',
+		type: 'plain'
+	},
+	{
+		name: 'Markdown: domain+path',
+		template: '[{{domain_path}}]({{url}})',
+		type: 'plain'
 	}
 ];
 
@@ -148,17 +168,19 @@ function updatePreview(index) {
 		const sampleTitle = 'Example Page Title';
 		const sampleUrl = 'https://example.com/page';
 		const sampleDomain = 'example.com';
+		const sampleDomainPath = 'example.com/page';
 		
-		const preview = formatTemplate(templateInput.value, sampleTitle, sampleUrl, sampleDomain);
+		const preview = formatTemplate(templateInput.value, sampleTitle, sampleUrl, sampleDomain, sampleDomainPath);
 		previewDiv.textContent = preview;
 	}
 }
 
-function formatTemplate(template, title, url, domain) {
+function formatTemplate(template, title, url, domain, domainPath) {
 	return template
 		.replace(/\{\{title\}\}/g, title)
 		.replace(/\{\{url\}\}/g, url)
-		.replace(/\{\{domain\}\}/g, domain);
+		.replace(/\{\{domain\}\}/g, domain)
+		.replace(/\{\{domain_path\}\}/g, domainPath);
 }
 
 function addNewFormat() {
