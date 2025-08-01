@@ -50,7 +50,7 @@ jobs:
         run: npm run build
         
       - name: Rename to XPI
-        run: cd dist && mv *.zip *.xpi
+        run: mv dist/tim_s_link_copier-${{ steps.version.outputs.version }}.zip dist/tim_s_link_copier-${{ steps.version.outputs.version }}.xpi
         
       - name: Generate release notes
         id: release_notes
