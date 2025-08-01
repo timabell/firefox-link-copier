@@ -27,7 +27,7 @@ A Firefox extension that allows users to copy tab links and information in multi
 ## Installation
 
 ### From Firefox Add-ons Store
-1. Visit the [Firefox Add-ons page](https://addons.mozilla.org) (coming soon)
+1. Visit the [Firefox add-on page](https://addons.mozilla.org/en-US/firefox/addon/tim-s-link-copier/) (awaiting mozilla approval as of 1st Aug 2025)
 2. Click "Add to Firefox"
 3. Confirm installation
 
@@ -37,6 +37,8 @@ A Firefox extension that allows users to copy tab links and information in multi
 3. Click "This Firefox"
 4. Click "Load Temporary Add-on"
 5. Select the `manifest.json` file from the `src/` folder
+
+[Installing the xpi is not permitted in the standard firefox builds](https://support.mozilla.org/en-US/kb/add-on-signing-in-firefox?as=u&utm_source=inproduct#firefox:linux:fx139) (i.e from the github releases).
 
 ## Usage
 
